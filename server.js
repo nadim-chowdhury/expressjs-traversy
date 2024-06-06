@@ -1,8 +1,10 @@
 import express from "express";
-import path from "path";
-import { demoData } from "./demoData.js";
+// import path from "path";
+// import { demoData } from "./demoData.js";
+import countries from "./routes/countries.js";
 
 const app = express();
+const port = process.env.PORT || 8000;
 
 // app.use(express.static(path.join(__dirname, "public")));
 
@@ -15,10 +17,8 @@ const app = express();
 //   res.sendFile(path.join(__dirname, "public", "about.html"));
 // });
 
-app.get("/api/countries", (req, res) => {
-  res.json(demoData);
-});
+app.use("/api/countries", countries);
 
-app.listen(8000, () => {
-  console.log(`Server Running on port 8000`);
+app.listen(port, () => {
+  console.log(`Server Running on port ${port}`);
 });
