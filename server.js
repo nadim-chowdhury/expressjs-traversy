@@ -2,12 +2,15 @@ import express from "express";
 // import path from "path";
 // import { demoData } from "./demoData.js";
 import countries from "./routes/countries.js";
+import { logger } from "./middleware/logger.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(logger);
 
 // app.use(express.static(path.join(__dirname, "public")));
 
