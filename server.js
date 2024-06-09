@@ -3,6 +3,7 @@ import express from "express";
 // import { demoData } from "./demoData.js";
 import countries from "./routes/countries.js";
 import { logger } from "./middleware/logger.js";
+import { errorHandler } from "./middleware/error.js";
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(logger);
+app.use(errorHandler);
 
 // app.use(express.static(path.join(__dirname, "public")));
 

@@ -13,12 +13,14 @@ router.get("/", (req, res) => {
   }
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", (req, res, next) => {
   const id = parseInt(req.params.id);
   const country = demoData.find((country) => country.id === id);
 
   if (!country) {
-    return res.status(404).json({ message: "Country Not Found" });
+    // return res.status(404).json({ message: "Country Not Found" });
+    const error = new Error(`Country not found`);
+    return next(error);
   }
   res.status(200).json(country);
 });
